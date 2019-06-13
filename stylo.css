@@ -51,3 +51,16 @@
 .opcao8 {	
 	border-right: 5px solid black;
 }
+
+.opcao1:hover,
+.opcao2:hover,
+.opcao3:hover,
+.opcao4:hover,
+.opcao5:hover,
+.opcao6:hover,
+.opcao7:hover,
+.opcao8:hover,
+.opcao9:hover {
+	cursor: pointer;
+	background-color: #d7eaf9;
+}
