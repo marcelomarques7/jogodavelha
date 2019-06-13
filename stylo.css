@@ -1,0 +1,53 @@
+.container {
+	margin:auto;
+	margin-top: 100px;
+	height:370px;
+	width:370px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.opcao1,
+.opcao2,
+.opcao3,
+.opcao4,
+.opcao5,
+.opcao6,
+.opcao7,
+.opcao8,
+.opcao9 {
+	margin:auto;
+	height:120px;
+	width: 120px;
+	background-color: white;
+	color:black;
+}
+
+.opcao1 {	
+	border-right: 5px solid black;
+	border-bottom: 5px solid black;
+}
+.opcao2 {	
+	border-right: 5px solid black;
+	border-bottom: 5px solid black;
+}
+.opcao3 {	
+	border-bottom: 5px solid black;
+}
+.opcao4 {	
+	border-right: 5px solid black;
+	border-bottom: 5px solid black;
+}
+.opcao5 {	
+	border-right: 5px solid black;
+	border-bottom: 5px solid black;
+}
+.opcao6 {	
+	border-bottom: 5px solid black;
+}
+.opcao7 {	
+	border-right: 5px solid black;
+}
+.opcao8 {	
+	border-right: 5px solid black;
+}
