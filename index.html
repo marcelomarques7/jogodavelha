@@ -3,23 +3,92 @@
 	<head>
 		<title>JOGO DA VELHA</title>
 		<link rel="stylesheet" type="text/css" href="stylo.css">
-		<script type="text/javascript" src="script.js"></script>
 	</head>
 	<body>
-
-		
-		<div class="container">			
-			<div class="opcao1" id="opcao1" onclick="jogo(1)">1</div>
-			<div class="opcao2" id="opcao2" onclick="jogo(2)">2</div>
-			<div class="opcao3" id="opcao3" onclick="jogo(3)">3</div>
-			<div class="opcao4" id="opcao4" onclick="jogo(4)">4</div>
-			<div class="opcao5" id="opcao5" onclick="jogo(5)">5</div>
-			<div class="opcao6" id="opcao6" onclick="jogo(6)">6</div>
-			<div class="opcao7" id="opcao7" onclick="jogo(7)">7</div>
-			<div class="opcao8" id="opcao8" onclick="jogo(8)">8</div>
-			<div class="opcao9" id="opcao9" onclick="jogo(9)">9</div>
-		</div>
+		<script>
+			
+			var body = document.querySelector('body');
+			var posicao
+			var vez = 1
 
 
+			var start = document.createElement('div')
+			start.setAttribute('class','start')
+			start.setAttribute('onclick','iniciar()')
+			start.textContent='INICIAR'
+			body.appendChild(start)
+
+			var container = document.createElement('div')
+			container.setAttribute('class','container')
+			body.appendChild(container)
+			
+
+			for (var i = 1; i<=9; i++) {
+				posicao = document.createElement('div')
+				posicao.id=('jogo'+i)
+				posicao.setAttribute('class','opcao'+i)
+				posicao.setAttribute('onclick','jogo('+i+')')
+				container.appendChild(posicao)
+			}
+
+			function iniciar (){
+
+				var nome1=prompt("BEM VINDO AO JOGO DA VELHA!\nQual o nome do jogador 1? (X)")
+				var nome2=prompt("Qual o nome do jogador 2? (BOLA)")
+				var jogadores = document.createElement('div')
+				jogadores.setAttribute("class","jogadores")
+				body.appendChild(jogadores)
+				var jogador1 = document.createElement('p')
+				jogador1.textContent=nome1+": "
+				var jogador2 = document.createElement('p')
+				jogador2.textContent=nome2+": "
+				jogadores.appendChild(jogador1)
+				jogadores.appendChild(jogador2)
+				var imgbola = document.createElement('img')
+				imgbola.setAttribute("class","imgbola")
+				imgbola.src='bola.png'
+				imgbola.height='80'
+				imgbola.width='80'
+				jogador2.appendChild(imgbola)
+				var imgx = document.createElement('img')
+				imgx.setAttribute("class","imgx")
+				imgx.src='x.png'
+				imgx.height='80'
+				imgx.width='80'
+				jogador1.appendChild(imgx)
+				start.setAttribute('onclick','japreenchido()')
+
+			}
+
+			function jogo(pos)
+				{
+					var jogo = pos
+
+					if (vez%2!=1){
+						var bola = document.createElement('div')
+						bola.setAttribute('class','bola')
+						var posicao = document.getElementById('jogo'+pos)
+						posicao.appendChild(bola)
+						posicao.setAttribute('onclick','jaescolhida()')
+						vez=vez+1
+						
+					}else{
+						var x = document.createElement('div')
+						x.setAttribute('class','x')
+						var posicao = document.getElementById('jogo'+pos)	
+						posicao.appendChild(x)
+						posicao.setAttribute('onclick','jaescolhida()')
+						vez=vez+1						
+					}
+				}
+
+			function jaescolhida(){
+				alert("POSIÇÃO JA ESCOLHIDA\nESCOLHA UMA VAZIA")
+			}
+
+			function japreenchido(){
+				alert("NOMES JA PREENCHIDOS")
+			}
+		</script>
 	</body>
 </html>
