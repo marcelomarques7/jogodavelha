@@ -10,6 +10,11 @@
 			var body = document.querySelector('body');
 			var posicao
 			var vez = 1
+			var rodadaX1, rodadaX2, rodadaX3, rodadaX4, rodadaX5
+			var rodadaO1, rodadaO2, rodadaO3, rodadaO4
+			var rodada = 1
+			var nome1="Jogador X"
+			var nome2="Jogador BOLA"
 
 
 			var start = document.createElement('div')
@@ -22,6 +27,11 @@
 			container.setAttribute('class','container')
 			body.appendChild(container)
 			
+			verificar = new Array(9)
+
+			var possibilidade1, possibilidade2, possibilidade3, possibilidade4, possibilidade5, possibilidade6, possibilidade7, possibilidade8
+
+
 
 			for (var i = 1; i<=9; i++) {
 				posicao = document.createElement('div')
@@ -29,12 +39,17 @@
 				posicao.setAttribute('class','opcao'+i)
 				posicao.setAttribute('onclick','jogo('+i+')')
 				container.appendChild(posicao)
+				verificar[i]=0
 			}
 
-			function iniciar (){
+			var possibilidade1, possibilidade2, possibilidade3, possibilidade4, possibilidade5, possibilidade6, possibilidade7, possibilidade8, velha
 
-				var nome1=prompt("BEM VINDO AO JOGO DA VELHA!\nQual o nome do jogador 1? (X)")
-				var nome2=prompt("Qual o nome do jogador 2? (BOLA)")
+			
+
+			window.onload = function iniciar (){
+
+				nome1=prompt("BEM VINDO AO JOGO DA VELHA!\nQual o nome do jogador 1? (X)")
+				nome2=prompt("Qual o nome do jogador 2? (BOLA)")
 				var jogadores = document.createElement('div')
 				jogadores.setAttribute("class","jogadores")
 				body.appendChild(jogadores)
@@ -62,7 +77,7 @@
 
 			function jogo(pos)
 				{
-					var jogo = pos
+					var jogo = pos				
 
 					if (vez%2!=1){
 						var bola = document.createElement('div')
@@ -70,6 +85,7 @@
 						var posicao = document.getElementById('jogo'+pos)
 						posicao.appendChild(bola)
 						posicao.setAttribute('onclick','jaescolhida()')
+						verificar[pos]=-1
 						vez=vez+1
 						
 					}else{
@@ -78,9 +94,42 @@
 						var posicao = document.getElementById('jogo'+pos)	
 						posicao.appendChild(x)
 						posicao.setAttribute('onclick','jaescolhida()')
+						verificar[pos]=1
 						vez=vez+1						
 					}
+
+					rodada++
+
+					possibilidade1 = verificar[1]+verificar[2]+verificar[3]
+					possibilidade2 = verificar[4]+verificar[5]+verificar[6]
+					possibilidade3 = verificar[7]+verificar[8]+verificar[9]
+					possibilidade4 = verificar[1]+verificar[4]+verificar[7]
+					possibilidade5 = verificar[2]+verificar[5]+verificar[8]
+					possibilidade6 = verificar[3]+verificar[6]+verificar[9]
+					possibilidade7 = verificar[1]+verificar[5]+verificar[9]
+					possibilidade8 = verificar[3]+verificar[5]+verificar[7]
+
+				  	if (possibilidade1 == 3 || possibilidade2 == 3 || possibilidade3 == 3 || possibilidade4 == 3 || possibilidade5 == 3 || possibilidade6 == 3 || possibilidade7 == 3 || possibilidade8 == 3){
+					alert("Jogador: "+nome1+" GANHOU!!")
+					location.reload()
+					}
+
+					if (possibilidade1 == -3 || possibilidade2 == -3 || possibilidade3 == -3 || possibilidade4 == -3 || possibilidade5 == -3 || possibilidade6 == -3 || possibilidade7 == -3 || possibilidade8 == -3){
+						alert("Jogador: "+nome2+" GANHOU!!")
+						location.reload()
+					}
+
+					if (rodada==10){
+						alert("DEU VELHA!!")
+						location.reload()
+					}
+
 				}
+
+
+
+
+			
 
 			function jaescolhida(){
 				alert("POSIÇÃO JA ESCOLHIDA\nESCOLHA UMA VAZIA")
